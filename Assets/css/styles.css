@@ -1217,11 +1217,8 @@ and (max-width : 1220px) {
 }
 
 .event-date {
-	float: left;
 	font-size: 1.2em;
-	margin: 0 1%;
 	text-align:left;
-	width: 18%;
 }
 
 .event-time {

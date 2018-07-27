@@ -120,13 +120,13 @@ function makeCorsRequest() {
 	</div>
 </div>
 	<div>All times are adjusted to your local time</div>
-	<div>
+	<div class="col-md-12" style="margin-bottom: 225px;">
 		<h3>Current Events!</h3>
-        <div id="date-slider-zoom" style="width:1000px;margin-bottom:10px;"></div>
+        <div id="date-slider-zoom"></div>
 		<div id="date-slider" class="time-slider"></div>
 		<button type="button" class="btn-primary reset">Jump Back to Current Event</button>
-
 	</div>
+	<div class="row"></div>
 	<p id="messages"></p>
 	<div id="events"></div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -304,6 +304,8 @@ function makeCorsRequest() {
                 currentDate = start.toDateString();
                 currentDateDiv = $("<div>")
                     .addClass('event-date')
+					.addClass('col-md-2')
+					.addClass('col-sm-4')
 					.append(
 					    $('<h2>')
 							.text(currentDate)
