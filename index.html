@@ -203,16 +203,6 @@ function makeCorsRequest() {
                 'stop': '2018-08-04T11:00-0500'
             },
             {
-                'text': 'Fursuit Parade Photo',
-                'start': '2018-08-04T12:30-0500',
-                'stop': '2018-08-04T13:00-0500'
-            },
-            {
-                'text': 'Fursuit Parade',
-                'start': '2018-08-04T13:00-0500',
-                'stop': '2018-08-04T14:00-0500'
-            },
-            {
                 'text': 'Asian Gameshow Experience',
                 'start': '2018-08-04T13:00-0500',
                 'stop': '2018-08-04T14:30-0500'
@@ -306,10 +296,6 @@ function makeCorsRequest() {
 			cell['_id'] = 'cell-' + index;
 			cell['start'] = new Date(cell['start']).getTime();
 			cell['stop'] = new Date(cell['stop']).getTime();
-	   		cell['style'] = {
-                'background-color': '#FDA148',
-				'color': '#555'
-			};
 	   		let start = new Date(cell.start);
 	   		if(start.toDateString() != currentDate) {
 	   		    $("#events").append(currentDateDiv);
@@ -330,6 +316,14 @@ function makeCorsRequest() {
 							.on('click', function() {
                                 let localTimeSlider = $('#date-slider').data("timeslider");
                                 localTimeSlider.set_new_start_timestamp(start.getTime());
+							})
+							.on('mouseover', function() {
+								$('#' + cell._id)
+									.addClass('highlight');
+							})
+							.on('mouseout', function() {
+                                $('#' + cell._id)
+                                    .removeClass('highlight');
 							})
 							.text(cell.text)
 							.append(

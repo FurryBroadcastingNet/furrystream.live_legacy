@@ -1207,6 +1207,15 @@ and (max-width : 1220px) {
 	height: 76px;
 }
 
+.time-slider .ruler .timecell {
+	background-color: #FDA148;
+	color: #555;
+}
+
+.time-slider .ruler .timecell.highlight {
+	background-color: #9ACD32;
+}
+
 .event-date {
 	float: left;
 	font-size: 1.2em;
