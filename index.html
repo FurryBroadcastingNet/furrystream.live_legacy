@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"/>
+<!-- Title -->
+<title> Furry Broadcasting Network Stream </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Page Description -->
+<meta name="description" content="Furry Broadcasting Stream will be displaying streams from the FBN LLC, Furry Conventions, Music and many more!">
+	
+<!-- All The CSS Files -->
+<link href="Assets/lib/timeslider/css/timeslider.css" rel="stylesheet" type="text/css"/>
+<link href="Assets/css/styles.css" rel="stylesheet">
+<link href="Assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://vjs.zencdn.net/7.0.3/video-js.css" rel="stylesheet">
+<link href="Assets/css/player.css" rel="stylesheet">
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+
+<!-- XML -->
+
+<script>
+// Create the XHR object.
+function createCORSRequest(method, url) {
+  var xhr = new XMLHttpRequest();
+  if ("withCredentials" in xhr) {
+    // XHR for Chrome/Firefox/Opera/Safari.
+    xhr.open(method, url, true);
+  } else if (typeof XDomainRequest != "undefined") {
+    // XDomainRequest for IE.
+    xhr = new XDomainRequest();
+    xhr.open(method, url);
+  } else {
+    // CORS not supported.
+    xhr = null;
+  }   
+  
+  xhr.onload = function() {
+    var responseText = xhr.responseText;
+     console.log(responseText);
+  };
+  xhr.onerror = function() {
+    console.log('There was an error!');
+  }; 
+  return xhr;
+}
+  
+// Helper method to parse the title tag from the response.
+function getTitle(text) {
+  return text.match('<title>(.*)?</title>')[1];
+}
+
+// Make the actual CORS request.
+function makeCorsRequest() {
+  // This is a sample server that supports CORS.
+  var url = 'https://547f72e6652371c3.mediapackage.us-east-1.amazonaws.com/out/v1/551f7d446def4d069e2bb054160fd46c/index.m3u8';
+
+  var xhr = createCORSRequest('GET', url);
+  if (!xhr) {
+    alert('CORS not supported');
+    return;
+  }
+
+  // Response handlers.
+  xhr.onload = function() {
+    var text = xhr.responseText;
+    var title = getTitle(text);
+    alert('Response from CORS request to ' + url + ': ' + title);
+  };
+
+  xhr.onerror = function() {
+    alert('Woops, there was an error making the request.');
+  };
+
+  xhr.send();
+}
+</script>
+
+<!-- Main Header Area -->
+<head>
+<header id="mu-hero" class="" role="banner">
+		<!-- Navigation Bar  -->
+		<nav class="navbar navbar-fixed-top navbar-default mu-navbar">
+		  	<div class="container">
+			    <!-- For Mobile Display -->
+			    <div class="navbar-header">
+			    	<a class="navbar-brand">FBN - Furry Broadcasting Network Stream</a>
+				</div>
+			    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			      	<ul class="nav navbar-nav mu-menu navbar-right">
+						<li><a href="https://furrybroadcasting.net/">FBN Main</a></li>
+                        <li><a href="https://megaplexcon.org//">MegaPlex</a></li>
+			      	</ul>
+			    </div>
+		  	</div>
+		</nav>
+</header>
+<p></p>    
+<!-- Main Body / Video Area -->
+<body>
+<p>
+</p>
+<div class="">
+	<div class="">
+        <script>
+		/* What is this even for? It doesn't work (PUT is not allowed here) - CodeSteele
+        var url = 'https://547f72e6652371c3.mediapackage.us-east-1.amazonaws.com/out/v1/551f7d446def4d069e2bb054160fd46c/index.m3u8';
+		var xhr = createCORSRequest('PUT', url);
+		xhr.setRequestHeader(
+			'X-Custom-Header', 'value');
+		xhr.send();
+		*/
+        </script>
+		<video id="player" preload="auto" width="1024px" height="640px" poster="Assets/images/behindvideo.jpg" class="video-js" controls preload="auto" data-setup="{}" >
+		<source src="https://547f72e6652371c3.mediapackage.us-east-1.amazonaws.com/out/v1/551f7d446def4d069e2bb054160fd46c/index.m3u8" type='application/x-mpegURL'>
+			<p class="vjs-no-js">
+			To view this video please enable JavaScript, and consider upgrading to a web browser that
+			<a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+			</p>
+		</video>
+	</div>
+</div>
+<p></p>
+	<div>
+		<h3>Current Events!</h3>
+        <div id="date-slider-zoom" style="width:1000px;margin-bottom:10px;"></div>
+		<div id="date-slider" class="time-slider"></div>
+	</div>
+	<p id="messages"></p>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="Assets/lib/timeslider/js/timeslider.js"></script>
+	<script type="text/javascript">
+		const cells = [
+			{
+				'text': 'Dance - DJ lberian',
+				'start': '2018-08-02T21:00-0500',
+				'stop': '2018-08-02T22:00-0500'
+			},
+            {
+                'text': 'Dance - MurDur The Clown',
+                'start': '2018-08-02T22:00-0500',
+                'stop': '2018-08-02T23:00-0500'
+            },
+            {
+                'text': 'Dance - Konomichi',
+                'start': '2018-08-02T23:00-0500',
+                'stop': '2018-08-03T00:00-0500'
+            },
+            {
+                'text': 'Dance - Goji',
+                'start': '2018-08-03T00:00-0500',
+                'stop': '2018-08-03T01:00-0500'
+            },
+            {
+                'text': 'Opening Ceremonies',
+                'start': '2018-08-03T10:00-0500',
+                'stop': '2018-08-03T11:00-0500'
+            },
+            {
+                'text': 'So This is Your 1st Furry Convention?',
+                'start': '2018-08-03T12:00-0500',
+                'stop': '2018-08-03T13:00-0500'
+            },
+            {
+                'text': 'Box Of Lies',
+                'start': '2018-08-03T14:00-0500',
+                'stop': '2018-08-03T15:00-0500'
+            },
+            {
+                'text': 'Third Time\'s the Charm (Zack and Shiny)',
+                'start': '2018-08-03T16:00-0500',
+                'stop': '2018-08-03T17:00-0500'
+            },
+            {
+                'text': 'Meet The GOH',
+                'start': '2018-08-03T17:30-0500',
+                'stop': '2018-08-03T18:30-0500'
+            },
+            {
+                'text': 'Dance - Wildwolf',
+                'start': '2018-08-03T22:00-0500',
+                'stop': '2018-08-03T23:00-0500'
+            },
+            {
+                'text': 'Dance - YNA',
+                'start': '2018-08-03T23:00-0500',
+                'stop': '2018-08-03T00:00-0500'
+            },
+            {
+                'text': 'Dance - Takum Fox',
+                'start': '2018-08-04T00:00-0500',
+                'stop': '2018-08-04T01:00-0500'
+            },
+            {
+                'text': 'Dance - Kadiu-0500',
+                'start': '2018-08-04T01:00-0500',
+                'stop': '2018-08-04T02:00-0500'
+            },
+            {
+                'text': 'Fursuit Games',
+                'start': '2018-08-04T10:00-0500',
+                'stop': '2018-08-04T11:00-0500'
+            },
+            {
+                'text': 'Fursuit Parade Photo',
+                'start': '2018-08-04T12:30-0500',
+                'stop': '2018-08-04T13:00-0500'
+            },
+            {
+                'text': 'Fursuit Parade',
+                'start': '2018-08-04T13:00-0500',
+                'stop': '2018-08-04T14:00-0500'
+            },
+            {
+                'text': 'Asian Gameshow Experience',
+                'start': '2018-08-04T13:00-0500',
+                'stop': '2018-08-04T14:30-0500'
+            },
+            {
+                'text': 'NIIC the Singing Dog',
+                'start': '2018-08-04T17:00-0500',
+                'stop': '2018-08-04T18:00-0500'
+            },
+            {
+                'text': 'Fursuit Dance Competition!',
+                'start': '2018-08-04T18:30-0500',
+                'stop': '2018-08-04T20:30-0500'
+            },
+            {
+                'text': 'Dance - Megawolf',
+                'start': '2018-08-04T21:00-0500',
+                'stop': '2018-08-04T22:00-0500'
+            },
+            {
+                'text': 'Dance - BetaMonkey',
+                'start': '2018-08-04T22:00-0500',
+                'stop': '2018-08-04T23:00-0500'
+            },
+            {
+                'text': 'Dance - Roo 3K',
+                'start': '2018-08-04T23:00-0500',
+                'stop': '2018-08-05T00:00-0500'
+            },
+            {
+                'text': 'Dance - Firr',
+                'start': '2018-08-05T00:00-0500',
+                'stop': '2018-08-05T01:00-0500'
+            },
+            {
+                'text': 'Dance - Cosmik',
+                'start': '2018-08-05T01:00-0500',
+                'stop': '2018-08-05T02:00-0500'
+            },
+            {
+                'text': 'CARE Persentation',
+                'start': '2018-08-05T10:00-0500',
+                'stop': '2018-08-05T11:00-0500'
+            },
+            {
+                'text': 'Charity Auction',
+                'start': '2018-08-05T11:00-0500',
+                'stop': '2018-08-05T13:00-0500'
+            },
+            {
+                'text': 'Floor Wars',
+                'start': '2018-08-05T14:00-0500',
+                'stop': '2018-08-05T16:00-0500'
+            },
+            {
+                'text': 'Fox and Peppers',
+                'start': '2018-08-05T17:00-0500',
+                'stop': '2018-08-05T18:30-0500'
+            },
+            {
+                'text': 'Closing Ceremonies',
+                'start': '2018-08-05T19:00-0500',
+                'stop': '2018-08-05T20:00-0500'
+            },
+            {
+                'text': 'Dance - KOHAIRAPTOR',
+                'start': '2018-08-05T21:00-0500',
+                'stop': '2018-08-05T22:00-0500'
+            },
+            {
+                'text': 'Dance - Sly As Fox',
+                'start': '2018-08-05T22:00-0500',
+                'stop': '2018-08-05T23:00-0500'
+            },
+            {
+                'text': 'Dance - Laser Raccoon',
+                'start': '2018-08-05T23:00-0500',
+                'stop': '2018-08-06T00.00-0500'
+            },
+            {
+                'text': 'Dance - Palexio',
+                'start': '2018-08-06T00:00-0500',
+                'stop': '2018-08-06T01:00-0500'
+            }
+
+		];
+		cells.forEach(function(cell, index) {
+			cell['_id'] = 'cell-' + index;
+			cell['start'] = new Date(cell['start']).getTime();
+			cell['stop'] = new Date(cell['stop']).getTime();
+	   		cell['style'] = {
+                'background-color': '#FDA148',
+				'color': '#555'
+			};
+		});
+
+		(function () {
+			$('#version').text('Version: '+ $.fn.TimeSlider.VERSION);
+			$('#date-slider-zoom').slider({
+				min: 1,
+				max: 48,
+				value: 24,
+				step: 0.2,
+				slide: function(event, ui) {
+					$('#date-slider').TimeSlider({hours_per_ruler: ui.value});
+				}
+			});
+
+			var timeSlider = $('#date-slider').TimeSlider({
+				start_timestamp: new Date().getTime(),
+                current_timestamp: new Date().getTime(),
+				timecell_enable_move: false,
+				timecell_enable_resize: false,
+				hours_per_ruler: 8,
+				init_cells: cells,
+				on_add_cell_callback: function(id, start, stop) {
+					let timeCellInfo = cells.find(function(element) {
+						return element._id === id;
+					});
+					$('#' + id).text(timeCellInfo.text);
+				}
+			});
+			$('.prompts').css('top', '-174px');
+
+			setInterval( function() {
+			    let localTimeSlider = timeSlider.data("timeslider");
+                localTimeSlider.set_new_start_timestamp(new Date().getTime());
+            }, 1000);
+		})();
+</script>
+<footer>
+</footer>
+    
+<!-- Scripts that are needed -->
+<script src="https://vjs.zencdn.net/7.0.3/video.js"></script>
+<script src="Assets/js/webserv.js"></script>
+</body>
