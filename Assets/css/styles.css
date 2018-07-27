@@ -1205,3 +1205,13 @@ and (max-width : 1220px) {
 .time-slider .ruler .timecell-event {
 	height: 76px;
 }
+
+.event-date {
+	font-size: 1.2em;
+	text-align:left;
+}
+
+.event-time {
+	font-size: .85em;
+	cursor: pointer;
+}

@@ -119,13 +119,14 @@ function makeCorsRequest() {
 		</video>
 	</div>
 </div>
-<p></p>
+	<div>All times are adjusted to your local time</div>
 	<div>
 		<h3>Current Events!</h3>
         <div id="date-slider-zoom" style="width:1000px;margin-bottom:10px;"></div>
 		<div id="date-slider" class="time-slider"></div>
 	</div>
 	<p id="messages"></p>
+	<div id="events"></div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<script src="Assets/lib/timeslider/js/timeslider.js"></script>
@@ -298,6 +299,8 @@ function makeCorsRequest() {
             }
 
 		];
+
+		var currentDate = '';
 		cells.forEach(function(cell, index) {
 			cell['_id'] = 'cell-' + index;
 			cell['start'] = new Date(cell['start']).getTime();
@@ -306,6 +309,29 @@ function makeCorsRequest() {
                 'background-color': '#FDA148',
 				'color': '#555'
 			};
+	   		let start = new Date(cell.start);
+	   		if(start.toDateString() != currentDate) {
+                currentDate = start.toDateString();
+	   		    $('#events')
+					.append(
+					    $('<div>')
+							.addClass('event-date')
+							.text(currentDate)
+					);
+			}
+
+	   		$('#events').append(
+				$('<div>')
+					.append(
+					    $('<a>')
+							.addClass('event-time')
+							.on('click', function() {
+                                let localTimeSlider = $('#date-slider').data("timeslider");
+                                localTimeSlider.set_new_start_timestamp(start.getTime());
+							})
+							.text(cell.text + ": " + start.toLocaleTimeString() + " - " + new Date(cell.stop).toLocaleTimeString())
+					)
+			);
 		});
 
 		(function () {
@@ -320,7 +346,7 @@ function makeCorsRequest() {
 				}
 			});
 
-			var timeSlider = $('#date-slider').TimeSlider({
+			let timeSlider = $('#date-slider').TimeSlider({
 				start_timestamp: new Date().getTime(),
                 current_timestamp: new Date().getTime(),
 				timecell_enable_move: false,
