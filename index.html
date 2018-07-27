@@ -124,6 +124,8 @@ function makeCorsRequest() {
 		<h3>Current Events!</h3>
         <div id="date-slider-zoom" style="width:1000px;margin-bottom:10px;"></div>
 		<div id="date-slider" class="time-slider"></div>
+		<button type="button" class="btn-primary reset">Jump Back to Current Event</button>
+
 	</div>
 	<p id="messages"></p>
 	<div id="events"></div>
@@ -362,6 +364,9 @@ function makeCorsRequest() {
 				}
 			});
 			$('.prompts').css('top', '-174px');
+			$('.reset').on('click', function(){
+			    	timeSlider.data("timeslider").set_new_start_timestamp(new Date().getTime());
+				});
 		})();
 </script>
 <footer>
