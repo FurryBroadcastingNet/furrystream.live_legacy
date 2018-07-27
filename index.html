@@ -290,7 +290,7 @@ function makeCorsRequest() {
             {
                 'text': 'Dance - Laser Raccoon',
                 'start': '2018-08-05T23:00-0500',
-                'stop': '2018-08-06T00.00-0500'
+                'stop': '2018-08-06T00:00-0500'
             },
             {
                 'text': 'Dance - Palexio',
@@ -301,6 +301,7 @@ function makeCorsRequest() {
 		];
 
 		var currentDate = '';
+		var currentDateDiv;
 		cells.forEach(function(cell, index) {
 			cell['_id'] = 'cell-' + index;
 			cell['start'] = new Date(cell['start']).getTime();
@@ -311,16 +312,17 @@ function makeCorsRequest() {
 			};
 	   		let start = new Date(cell.start);
 	   		if(start.toDateString() != currentDate) {
+	   		    $("#events").append(currentDateDiv);
                 currentDate = start.toDateString();
-	   		    $('#events')
+                currentDateDiv = $("<div>")
+                    .addClass('event-date')
 					.append(
-					    $('<div>')
-							.addClass('event-date')
+					    $('<h2>')
 							.text(currentDate)
 					);
 			}
 
-	   		$('#events').append(
+            currentDateDiv.append(
 				$('<div>')
 					.append(
 					    $('<a>')
@@ -329,9 +331,14 @@ function makeCorsRequest() {
                                 let localTimeSlider = $('#date-slider').data("timeslider");
                                 localTimeSlider.set_new_start_timestamp(start.getTime());
 							})
-							.text(cell.text + ": " + start.toLocaleTimeString() + " - " + new Date(cell.stop).toLocaleTimeString())
+							.text(cell.text)
+							.append(
+							    $('<span>').text(start.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}) + " - "
+                                    + new Date(cell.stop).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}))
+							)
 					)
 			);
+            $("#events").append(currentDateDiv);
 		});
 
 		(function () {

@@ -1208,11 +1208,31 @@ and (max-width : 1220px) {
 }
 
 .event-date {
+	float: left;
 	font-size: 1.2em;
+	margin: 0 1%;
 	text-align:left;
+	width: 18%;
 }
 
 .event-time {
-	font-size: .85em;
+	border: none;
 	cursor: pointer;
+	font-size: .75em;
+	text-decoration: none;
+	width: 100%;
+}
+
+.event-time span {
+	display: block;
+	font-size: .75em;
+}
+
+.event-time:hover {
+	border: none;
+	color: #ccc;
+}
+
+.event-time:hover:after {
+	display: none;
 }
