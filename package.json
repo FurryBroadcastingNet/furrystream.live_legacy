@@ -1,0 +1,25 @@
+{
+  "name": "fbn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install": "napa"
+  },
+  "napa": {
+    "timeslider": "furrybroadcastingnetwork/timeslider"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/furrybroadcastingnetwork/furrybroadcastingstream.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/furrybroadcastingnetwork/furrybroadcastingstream/issues"
+  },
+  "homepage": "https://github.com/furrybroadcastingnetwork/furrybroadcastingstream#readme",
+  "devDependencies": {
+    "napa": "^3.0.0"
+  }
+}
