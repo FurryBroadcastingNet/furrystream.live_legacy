@@ -1242,3 +1242,18 @@ and (max-width : 1220px) {
 .event-time:hover:after {
 	display: none;
 }
+
+#messages,
+#messages p {
+	color: #fff;
+	margin: 5px 20px;
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+#events {
+	width: 90%;
+}
